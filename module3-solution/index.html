@@ -16,22 +16,16 @@
       <input type="text" placeholder="search term" class="form-control" ng-model="narrowCtrl.searchTerm">
     </div>
     <div class="form-group narrow-button">
-      <button class="btn btn-primary" ng-click="narrowCtrl.narrow(narrowCtrl.searchTerm);">Narrow It Down For Me!</button>
+      <button class="btn btn-primary" ng-click="narrowCtrl.clearItems(); narrowCtrl.found(narrowCtrl.searchTerm);">Narrow It Down For Me!</button>
       <div>
         <ul>
-          <li ng-if="!narrowCtrl.empty()" ng-repeat="menuItem in narrowCtrl.menuItems">
-
-            {{ menuItem.name }}, {{ menuItem.short_name }}, {{ menuItem.description }}
-
+          <li ng-if="!narrowCtrl.empty()" ng-repeat="menuItem in narrowCtrl.foundItems">
+            <found-items menu-item="menuItem" on-remove="narrowCtrl.removeItem(index)">
+            </found-items>
             <button ng-if="!narrowCtrl.empty()" ng-click="narrowCtrl.removeItem($index);">Don't want this one!</button>
           </li>
         </ul>
       </div>
-
-    <!-- found-items should be implemented as a component -->
-    <!-- <found-items found-items="...." on-remove="...."></found-items> -->
-    </div>
   </div>
-
 </body>
 </html>
