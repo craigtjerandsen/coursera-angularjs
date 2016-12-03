@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app='MenuApp'>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Welcome to our Restaurant</title>
+  </head>
+  <body>
+    <h1>Welcome to our Restaurant</h1>
+
+    <div class="tabs">
+      <a ui-sref="categories">Menu Categories</a>
+      <!-- <a ui-sref="tab2" ui-sref-active="activeTab">Menu Items</a> -->
+      <!-- <button ui-sref="tab2">Tab 2</button> -->
+    </div>
+
+    <ui-view></ui-view>
+
+    <!-- Libraries -->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
+
+    <!-- Modules -->
+    <script src="src/menuapp.module.js"></script>
+    <script src="src/menudata.service.js"></script>
+    <script src="src/data.module.js"></script>
+    <script src="src/categories.component.js"></script>
+    <script src="src/categories.controller.js"></script>
+    <!-- <script src="src/items.component.js"></script> -->
+
+    <!-- Routes -->
+    <script src="src/routes.js"></script>
+
+  </body>
+</html>
