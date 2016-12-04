@@ -27,11 +27,11 @@ console.log("MenuDataService is instantiated");
     });
   }
 
-  service.getItemsForCategory = function() {
+  service.getItemsForCategory = function(categoryShortName) {
     console.log("getItemsForCategory is called");
     return $http({
         method: "GET",
-        url: (ApiBasePath + "/menu_items.json")
+        url: (ApiBasePath + "/menu_items.json?category=" + categoryShortName)
       })
       .then(function (result) {
         var items = result.data.menu_items;
