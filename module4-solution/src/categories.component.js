@@ -4,7 +4,7 @@ console.log("categories.component is called");
 angular.module('MenuApp')
 .component('categoriesComponent', {
   templateUrl: 'src/templates/categories.template.html',
-  //controller: 'CategoriesController',
+  //controller: 'CategoriesController as categoriesCtrl',
   bindings: {
     items: '<'
   }

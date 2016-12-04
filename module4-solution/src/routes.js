@@ -1,7 +1,7 @@
 (function () {
 'use strict';
 
-angular.module('MenuApp')
+angular.module('data')
 .config(RoutesConfig);
 
 RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -24,27 +24,30 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
   // Premade list page
   .state('categories', {
     url: '/categories',
+    //template: '<categoriesComponent items="items"></categoriesComponent>',
     templateUrl: 'src/templates/categories.template.html',
     controller: 'CategoriesController as categoriesCtrl',
     resolve: {
-      items: ['MenuDataService', function (MenuDataService) {
+      categories: ['MenuDataService', function (MenuDataService) {
         console.log("Using routes.js to retrieve categories");
         return MenuDataService.getAllCategories();
       }]
     }
   })
 
-  .state('itemDetail', {
-    url: '/item-detail/{itemId}',
-    templateUrl: 'src/templates/item-detail.template.html',
-    controller: 'ItemDetailController as itemDetail',
+  .state('items', {
+    url: '/items/{short_name}',
+    //url: '/items',
+    templateUrl: 'src/templates/items.template.html',
+    controller: 'ItemsController as itemsCtrl',
     resolve: {
-      item: ['$stateParams', 'MenuDataService',
+      items: ['$stateParams', 'MenuDataService',
             function ($stateParams, MenuDataService) {
-              return MenuDataService.getItems()
-                .then(function (items) {
-                  return items[$stateParams.itemId];
-                });
+              return MenuDataService.getItemsForCategory();
+                // .then(function (items) {
+                //   console.log("items for category: ", items);
+                //   return items;
+                // });
             }]
     }
   });

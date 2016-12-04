@@ -18,34 +18,35 @@ console.log("MenuDataService is instantiated");
       url: (ApiBasePath + "/categories.json")
     })
     .then(function (result) {
-      var items = result.data;
+      var categories = result.data;
       console.log("retrieved: ", result.data);
-      return items;
+      return categories;
     })
     .catch(function (error) {
       console.log(error);
     });
   }
 
-  // service.getItemsForCategory() = function(categoryShortName) {
-  //   return $http({
-  //       method: "GET",
-  //       url: (ApiBasePath + "/categories.json")
-  //     })
-  //     .then(function (result) {
-  //       var items = result.data.categories;
-  //       for (var i = 0; i < items.length; i++) {
-  //         var description = items[i].description;
-  //         if (description.toLowerCase().indexOf(searchTerm) !== -1) {
-  //           foundItems.push(items[i]);
-  //       }
-  //     }
-  //     return foundItems;
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
-  // }
-}
+  service.getItemsForCategory = function() {
+    console.log("getItemsForCategory is called");
+    return $http({
+        method: "GET",
+        url: (ApiBasePath + "/menu_items.json")
+      })
+      .then(function (result) {
+        var items = result.data.menu_items;
+        // for (var i = 0; i < items.length; i++) {
+        //   var description = items[i].description;
+        //   if (description.toLowerCase().indexOf(searchTerm) !== -1) {
+        //     items.push(items[i]);
+        // }
+        console.log("retrieved items: ", result.data.menu_items);
+        return items;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+  }
 
 })();
