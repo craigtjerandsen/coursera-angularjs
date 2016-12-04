@@ -2,7 +2,7 @@
 'use strict';
 
 // angular.module('MenuApp',['ui.router']);
-angular.module('MenuApp', ['ui.router']);
+angular.module('MenuApp', ['ui.router', 'data']);
 console.log("menuapp is instantiated");
 // angular.module('MenuApp')
 // .config(RoutesConfig);

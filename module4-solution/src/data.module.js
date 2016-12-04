@@ -1,7 +1,7 @@
 (function () {
 'use strict';
 
-angular.module('data', ['MenuDataService']);
+angular.module('data', []);
 console.log("data.module instantiated");
 
 })();
