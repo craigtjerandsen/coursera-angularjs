@@ -2,16 +2,18 @@
 "use strict";
 
 angular.module('public')
-.controller('MyinfoController', MyinfoController);
+.controller('MyinfoController', MyinfoController)
+.constant('ApiPath', 'https://craigtjerandsen-module5.herokuapp.com');
 
-MyinfoController.$inject = ['SignupService', 'myinfo'];
-function MyinfoController(SignupService, myinfo) {
+MyinfoController.$inject = ['SignupService', 'myinfo', 'ApiPath'];
+function MyinfoController(SignupService, myinfo, ApiPath) {
   var myinfoCtrl = this;
   var service = SignupService;
 
   myinfoCtrl.message = "";
 
-  myinfoCtrl.myInfo = myinfo;
+  myinfoCtrl.myinfo = myinfo;
+  myinfoCtrl.ApiPath = ApiPath;
 
   var myinfo = service.getMyinfo();
   if (myinfo.length > 0) {

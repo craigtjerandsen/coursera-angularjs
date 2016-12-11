@@ -8,7 +8,6 @@ SignupController.$inject = ['SignupService'];
 function SignupController(SignupService) {
   var signupCtrl = this;
   var service = SignupService;
-  console.log("Controller called!");
 
   signupCtrl.firstName = "";
   signupCtrl.lastName = "";
@@ -18,26 +17,24 @@ function SignupController(SignupService) {
 
   signupCtrl.message = "";
 
-  signupCtrl.request = [];
+  signupCtrl.request = {};
+
   signupCtrl.buildRequest = function() {
-    signupCtrl.request.push(signupCtrl.firstName);
-    signupCtrl.request.push(signupCtrl.lastName);
-    signupCtrl.request.push(signupCtrl.emailAddress);
-    signupCtrl.request.push(signupCtrl.phoneNumber);
-    signupCtrl.request.push(signupCtrl.favoriteDish);
-    return signupCtrl.request;
+    signupCtrl.request = {
+      firstName : signupCtrl.firstName,
+      lastName : signupCtrl.lastName,
+      emailAddress : signupCtrl.emailAddress,
+      phoneNumber : signupCtrl.phoneNumber,
+      favoriteDish : signupCtrl.favoriteDish
+    }
   }
 
   signupCtrl.submit = function () {
-    var promise = service.getMenuItem(signupCtrl.favoriteDish);
-    promise.then(function() {
-      console.log("message: ", service.message);
-      signupCtrl.message = service.message;
-    })
     signupCtrl.buildRequest();
-    console.log("request array: ", signupCtrl.request);
-    var request = service.saveSignupRequest(signupCtrl.request);
-    console.log("request: ", request);
+    var promise = service.submitRequest(signupCtrl.request);
+    promise.then(function() {
+      signupCtrl.message = service.message;
+    });
     return true;
   }
 }

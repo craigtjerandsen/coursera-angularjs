@@ -1,3 +1,10 @@
-<ul>
-  <li>Working</li>
+<ul ng-if="myinfoCtrl.myinfo.firstName">
+  <li>First Name: {{ myinfoCtrl.myinfo.firstName }}</li>
+  <li>Last Name: {{ myinfoCtrl.myinfo.lastName }}</li>
+  <li>Email: {{ myinfoCtrl.myinfo.emailAddress }}</li>
+  <li>Phone: {{ myinfoCtrl.myinfo.phoneNumber }}</li>
+  <li>Favorite Dish: {{ myinfoCtrl.myinfo.favoriteDish.name }}</li>
+  <li>Dish Description: {{ myinfoCtrl.myinfo.favoriteDish.description }}</li><br>
+  <img class="menu-item-photo" width="250" height="150" ng-src="{{myinfoCtrl.ApiPath}}/images/{{myinfoCtrl.myinfo.favoriteDish.short_name}}.jpg" alt="{{myinfoCtrl.myinfo.favoriteDish.short_name}}">
 </ul>
+<a style="margin-left: 40px" ng-if="!myinfoCtrl.myinfo.firstName" ui-sref="public.signup">Not Signed Up Yet. Sign up Now!</a>
