@@ -1,0 +1,29 @@
+<fieldset>
+  <legend class="signup-title">
+    Sign up to receive our newsletter
+  </legend>
+  <form name="signupForm" novalidate class="signup">
+    <input type="text" name="firstName" ng-model="signupCtrl.firstName" placeholder="first name" required></input>
+      <span class="signup-title" ng-if="signupForm.firstName.$error.required && signupForm.firstName.$touched" style="margin-top: 10px;">
+        First Name is required
+      </span><br>
+    <input type="text" name="lastName" ng-model="signupCtrl.lastName" placeholder="last name" required></input>
+      <span class="signup-title" ng-if="signupForm.lastName.$error.required && signupForm.lastName.$touched" style="margin-top: 10px;">
+        Last Name is required
+      </span><br>
+    <input type="email" name="emailAddress" ng-model="signupCtrl.emailAddress" placeholder="email address" required></input>
+      <span class="signup-title" ng-if="signupForm.emailAddress.$invalid && signupForm.emailAddress.$touched" style="margin-top: 10px;">
+        Must be a valid email address: handle@domain format
+      </span><br>
+    <input type="text" name="phoneNumber" ng-model="signupCtrl.phoneNumber" pattern="(\d{3})-(\d{3})-(\d{4})" placeholder="phone number" required></input>
+      <span class="signup-title" ng-if="signupForm.phoneNumber.$invalid && signupForm.phoneNumber.$touched" style="margin-top: 10px;">
+        Phone must be formated ###-###-####
+      </span><br>
+    <input type="text" name="favoriteDish" ng-model="signupCtrl.favoriteDish" placeholder="favorite dish number" required></input>
+      <span class="signup-title" ng-if="signupForm.favoriteDish.$error.required && signupForm.favoriteDish.$touched" style="margin-top: 10px;">
+        Please enter the id of your favorite dish.  Example: L1
+      </span><br><br>
+    <button ng-disabled="signupForm.$invalid" ng-click="signupCtrl.submit()">Submit</button><br><br>
+    <div class="signup-title" ng-if="signupCtrl.message" class="error">{{signupCtrl.message}}</div>
+  </form>
+</fieldset>
